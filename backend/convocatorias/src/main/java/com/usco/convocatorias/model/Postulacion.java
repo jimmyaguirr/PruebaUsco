@@ -1,5 +1,6 @@
 package com.usco.convocatorias.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.usco.convocatorias.model.enums.EstadoPostulacion;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -36,12 +37,14 @@ public class Postulacion {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "usuario_id", nullable = false,
             foreignKey = @ForeignKey(name = "FK_postulaciones_usuario"))
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Usuario usuario;
 
     @NotNull(message = "La convocatoria es obligatoria")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "convocatoria_id", nullable = false,
             foreignKey = @ForeignKey(name = "FK_postulaciones_convocatoria"))
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Convocatoria convocatoria;
 
     @Enumerated(EnumType.STRING)

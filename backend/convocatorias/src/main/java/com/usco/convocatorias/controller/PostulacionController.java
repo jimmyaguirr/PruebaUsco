@@ -59,8 +59,5 @@ public class PostulacionController {
         return ResponseEntity.ok(postulacionService.reportePostulacionesPorConvocatoria());
     }
 
-    @GetMapping("/reportes/resultado-postulaciones")
-    public ResponseEntity<List<ResultadoPostulacionesDTO>> reporteResultadoPostulaciones() {
-        return ResponseEntity.ok(postulacionService.reporteResultadoPostulaciones());
-    }
+
 }

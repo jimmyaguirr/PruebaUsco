@@ -75,8 +75,5 @@ public class ConvocatoriaController {
         return ResponseEntity.ok(convocatoriaService.cambiarEstado(id, dto.estado()));
     }
 
-    @GetMapping("/reportes/convocatorias-categoria")
-    public ResponseEntity<List<ConvocatoriaPorCategoriaDTO>> reporteConvocatoriasPorCategoria() {
-        return ResponseEntity.ok(convocatoriaService.reporteConvocatoriasPorCategoria());
-    }
+
 }

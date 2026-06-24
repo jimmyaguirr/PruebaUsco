@@ -1,5 +1,7 @@
 package com.usco.convocatorias.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.usco.convocatorias.model.enums.EstadoConvocatoria;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
@@ -58,6 +60,7 @@ public class Convocatoria {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creado_por", foreignKey = @ForeignKey(name = "FK_convocatorias_usuario"))
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Usuario creadoPor;
 
     @Column(name = "fecha_creacion", nullable = false, updatable = false)
@@ -77,8 +80,14 @@ public class Convocatoria {
     @Builder.Default
     private Set<Categoria> categorias = new HashSet<>();
 
+    /**
+     * Se ignora en la serialización JSON para evitar referencias circulares
+     * (Convocatoria -> Postulacion -> Convocatoria...). Las postulaciones de
+     * una convocatoria se consultan vía GET /api/postulaciones?convocatoriaId=.
+     */
     @OneToMany(mappedBy = "convocatoria", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
+    @JsonIgnore
     private Set<Postulacion> postulaciones = new HashSet<>();
 
     @PrePersist

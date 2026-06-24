@@ -55,4 +55,9 @@ public class ManejadorGlobalExcepciones {
         body.put("mensaje", mensaje);
         return ResponseEntity.status(status).body(body);
     }
+    @ExceptionHandler(org.springframework.security.core.AuthenticationException.class)
+    public ResponseEntity<Map<String, Object>> manejarAutenticacion(
+            org.springframework.security.core.AuthenticationException ex) {
+        return construirRespuesta(HttpStatus.UNAUTHORIZED, "Correo o contraseña incorrectos");
+    }
 }

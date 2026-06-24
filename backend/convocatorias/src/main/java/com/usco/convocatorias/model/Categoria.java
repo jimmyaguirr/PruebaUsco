@@ -1,4 +1,6 @@
 package com.usco.convocatorias.model;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -37,7 +39,14 @@ public class Categoria {
     @Column(name = "descripcion", length = 255)
     private String descripcion;
 
+    /**
+     * Lado inverso de la relación N:M. Se ignora en la serialización JSON
+     * para evitar referencias circulares (Categoria -> Convocatoria -> Categoria...).
+     * Si se necesita consultar las convocatorias de una categoría, usar el
+     * reporte GET /api/reportes/convocatorias-categoria.
+     */
     @ManyToMany(mappedBy = "categorias")
     @Builder.Default
+    @JsonIgnore
     private Set<Convocatoria> convocatorias = new HashSet<>();
 }
