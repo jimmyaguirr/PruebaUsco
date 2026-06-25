@@ -228,10 +228,6 @@ GET    /api/reportes/postulaciones-convocatoria
 GET    /api/reportes/resultado-postulaciones
 ```
 
-## Diagrama Entidad-Relación
-
-- `docs/DER_dbeaver_esquema_real.png` — DER generado desde el esquema real de la base de datos en DBeaver
-- `docs/DER_sistema_convocatorias.png` — diagrama conceptual con cardinalidad de cada relación
 - ```
 Colección de Postman disponible en la raíz del repositorio: `coleccion_postman_convocatorias.json`.
 
