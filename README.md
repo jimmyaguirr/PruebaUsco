@@ -99,11 +99,7 @@ CREATE LOGIN appConvocatorias WITH PASSWORD = 'TuPasswordSegura123!';
 USE bdConvocatorias;
 CREATE USER appConvocatorias FOR LOGIN appConvocatorias;
 ALTER ROLE db_owner ADD MEMBER appConvocatorias;
-```
 
-> **Nota:** si tu instancia de SQL Server solo tiene Windows Authentication habilitada, debes activar el modo mixto desde SSMS (Propiedades del servidor → Seguridad) o vía T-SQL, y reiniciar el servicio.
-
----
 
 ## 2. Configuración y ejecución del Backend
 
