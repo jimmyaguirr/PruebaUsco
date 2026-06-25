@@ -1,59 +1,87 @@
-# ConvocatoriasFrontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.4.
+# Sistema de Gestión de Convocatorias Institucionales
 
-## Development server
+Sistema web para administrar convocatorias institucionales dirigidas a estudiantes, docentes y administrativos de la **Universidad Surcolombiana**, desarrollado como prueba técnica para el cargo de Desarrollador(a) Full Stack.
 
-To start a local development server, run:
+Permite gestionar convocatorias (becas, monitorías, eventos, capacitaciones), categorías, usuarios con roles diferenciados, postulaciones con validaciones de negocio, y reportes con visualización en tabla y gráfico.
+
+---
+
+## Stack Tecnológico
+
+| Capa | Tecnología |
+|---|---|
+| Backend | Java 21, Spring Boot 3.5, Spring Security, JWT |
+| Base de datos | SQL Server 2022 |
+| ORM | Spring Data JPA / Hibernate |
+| Frontend | Angular 22 (standalone components), Angular Material |
+| Gráficos | Chart.js + ng2-charts |
+| Build / Gestión de dependencias | Maven (backend), npm (frontend) |
+
+------
+
+## 3. Configuración y ejecución del Frontend
+
+Desde `convocatorias-frontend/`:
 
 ```bash
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+La aplicación queda disponible en: `http://localhost:4200`
 
-## Code scaffolding
+> El frontend está configurado para consumir el backend en `http://localhost:8080/api` (ver `src/environments/environment.ts`). Si cambias el puerto del backend, actualiza esa URL.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## Credenciales de prueba
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Todos los usuarios de prueba comparten la misma contraseña: **`Usco2026*`**
 
-```bash
-ng generate --help
-```
+| Rol | Correo | Contraseña |
+|---|---|---|
+| ADMINISTRADOR | `mflopez@usco.edu.co` | `Usco2026*` |
+| DOCENTE | `cprios@usco.edu.co` | `Usco2026*` |
+| ESTUDIANTE | `ana.torres@usco.edu.co` | `Usco2026*` |
 
-## Building
+### Permisos por rol
 
-To build the project run:
+| Acción | ADMINISTRADOR | DOCENTE | ESTUDIANTE |
+|---|---|---|---|
+| Gestionar usuarios (CRUD) | ✅ | ❌ | ❌ |
+| Gestionar categorías (CRUD) | ✅ | ❌ (solo lectura) | ❌ (solo lectura) |
+| Gestionar convocatorias (CRUD) | ✅ | ❌ (solo lectura) | ❌ (solo lectura) |
+| Postularse a convocatorias | ❌ | ❌ | ✅ |
+| Aprobar / rechazar postulaciones | ✅ | ✅ | ❌ |
+| Ver reportes | ✅ | ❌ | ❌ |
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Funcionalidades principales
 
-## Running unit tests
+### Backend
+- Autenticación con JWT (`POST /api/auth/login`) y autorización por rol vía Spring Security
+- CRUD completo de Usuarios, Categorías y Convocatorias
+- Relación N:M entre Convocatorias y Categorías
+- Postulaciones con 3 validaciones de negocio: no duplicar postulación, no postularse a convocatorias cerradas o no publicadas, no exceder el cupo disponible
+- 3 reportes: convocatorias por categoría, postulaciones por convocatoria, resultado de postulaciones (aprobadas/rechazadas)
+- Manejo global de excepciones con respuestas HTTP estructuradas
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Frontend
+- Login con interceptor HTTP que adjunta el token JWT automáticamente
+- Guards de ruta por autenticación y por rol
+- Layout con sidebar colapsable
+- Dashboard con indicadores (KPIs) para administradores
+- CRUD visual de Usuarios, Categorías y Convocatorias con diálogos modales
+- Postulación a convocatorias (estudiantes) y gestión de aprobación/rechazo (administradores y docentes)
+- Reportes con tabla y gráfico (barras y dona) por cada reporte
 
-```bash
-ng test
-```
+---
+## Requisitos previos
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Java 21** (JDK)
+- **Maven** (o usar el wrapper incluido en el proyecto)
+- **SQL Server 2022** (Express o superior), con autenticación SQL habilitada (modo mixto)
+- **Node.js 22.x LTS** y **npm**
+- **Angular CLI 22**: `npm install -g @angular/cli
