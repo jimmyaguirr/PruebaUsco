@@ -1,0 +1,45 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Sistema de Convocatorias</mat-card-title>
+      <mat-card-subtitle>Universidad Surcolombiana</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+        <mat-form-field appearance="outline" class="campo-completo">
+          <mat-label>Correo institucional</mat-label>
+          <input matInput type="email" formControlName="correo" placeholder="usuario@usco.edu.co">
+          <mat-icon matSuffix>email</mat-icon>
+          @if (formulario.get('correo')?.hasError('required') && formulario.get('correo')?.touched) {
+          <mat-error>El correo es obligatorio</mat-error>
+          }
+          @if (formulario.get('correo')?.hasError('email') && formulario.get('correo')?.touched) {
+          <mat-error>Ingresa un correo válido</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="campo-completo">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="ocultarPassword() ? 'password' : 'text'" formControlName="password">
+          <button mat-icon-button matSuffix type="button" (click)="toggleOcultarPassword()">
+            <mat-icon>{{ ocultarPassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          @if (formulario.get('password')?.hasError('required') && formulario.get('password')?.touched) {
+          <mat-error>La contraseña es obligatoria</mat-error>
+          }
+        </mat-form-field>
+
+        <button mat-flat-button color="primary" type="submit" class="boton-login" [disabled]="cargando()">
+          @if (cargando()) {
+          <mat-spinner diameter="20"></mat-spinner>
+          } @else {
+          <span>Iniciar sesión</span>
+          }
+        </button>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
