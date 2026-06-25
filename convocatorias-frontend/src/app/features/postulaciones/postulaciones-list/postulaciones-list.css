@@ -1,0 +1,121 @@
+.encabezado {
+  margin-bottom: 20px;
+}
+
+.encabezado h1 {
+  margin: 0;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.subtitulo {
+  margin: 4px 0 0 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.panel-postular {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.selector-convocatoria {
+  flex: 1;
+  max-width: 400px;
+}
+
+.contenedor-tabla-scroll {
+  overflow-x: auto;
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.tabla-postulaciones {
+  width: 100%;
+  min-width: 700px;
+}
+
+.tabla-postulaciones th {
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.fila-tabla:hover {
+  background-color: #f8fafc;
+}
+
+.celda-usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar-usuario {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.nombre-usuario {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.celda-fecha {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.badge-postulacion {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.post-pendiente {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+
+.post-aprobada {
+  background-color: #d1fae5;
+  color: #047857;
+}
+
+.post-rechazada {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.columna-acciones {
+  text-align: right;
+}
+
+.sin-datos {
+  text-align: center;
+  color: #64748b;
+  padding: 40px;
+  background: #fff;
+  border-radius: 12px;
+}
