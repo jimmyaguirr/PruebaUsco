@@ -23,13 +23,12 @@ import { AuthService } from '../../../core/services/auth.service';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-
   cargando = signal(false);
   ocultarPassword = signal(true);
   formulario: FormGroup;
@@ -38,16 +37,15 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {
     this.formulario = this.fb.group({
       correo: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
     });
   }
 
   onSubmit(): void {
-
     if (this.formulario.invalid) {
       this.formulario.markAllAsTouched();
       return;
@@ -57,7 +55,7 @@ export class LoginComponent {
 
     const credenciales = {
       correo: this.formulario.value.correo!,
-      password: this.formulario.value.password!
+      password: this.formulario.value.password!,
     };
 
     this.authService.login(credenciales).subscribe({
@@ -70,9 +68,9 @@ export class LoginComponent {
         const mensaje = error?.error?.mensaje ?? 'Correo o contraseña incorrectos';
         this.snackBar.open(mensaje, 'Cerrar', {
           duration: 4000,
-          panelClass: ['snackbar-error']
+          panelClass: ['snackbar-error'],
         });
-      }
+      },
     });
   }
 

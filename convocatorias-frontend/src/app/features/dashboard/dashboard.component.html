@@ -1,5 +1,90 @@
-<div style="padding: 24px;">
+<div class="encabezado-dashboard">
   <h1>Bienvenido, {{ authService.usuarioActual()?.nombre }}</h1>
-  <p>Rol: {{ authService.usuarioActual()?.rol }}</p>
+  <p class="subtitulo">Rol: {{ authService.usuarioActual()?.rol }}</p>
 </div>
 
+@if (authService.tieneRol('ADMINISTRADOR')) {
+<div class="grid-kpis">
+  <mat-card class="kpi-card kpi-azul">
+    <div class="kpi-icono"><mat-icon>campaign</mat-icon></div>
+    <div class="kpi-texto">
+      <span class="kpi-valor">{{ totalConvocatorias() }}</span>
+      <span class="kpi-label">Convocatorias</span>
+    </div>
+  </mat-card>
+
+  <mat-card class="kpi-card kpi-verde">
+    <div class="kpi-icono"><mat-icon>assignment</mat-icon></div>
+    <div class="kpi-texto">
+      <span class="kpi-valor">{{ totalPostulaciones() }}</span>
+      <span class="kpi-label">Postulaciones</span>
+    </div>
+  </mat-card>
+
+  <mat-card class="kpi-card kpi-esmeralda">
+    <div class="kpi-icono"><mat-icon>check_circle</mat-icon></div>
+    <div class="kpi-texto">
+      <span class="kpi-valor">{{ totalAprobadas() }}</span>
+      <span class="kpi-label">Aprobadas</span>
+    </div>
+  </mat-card>
+
+  <mat-card class="kpi-card kpi-naranja">
+    <div class="kpi-icono"><mat-icon>hourglass_empty</mat-icon></div>
+    <div class="kpi-texto">
+      <span class="kpi-valor">{{ totalPendientes() }}</span>
+      <span class="kpi-label">Pendientes</span>
+    </div>
+  </mat-card>
+</div>
+}
+
+<h2 class="titulo-seccion">Accesos rápidos</h2>
+
+<div class="grid-accesos">
+
+  @if (authService.tieneRol('ADMINISTRADOR')) {
+  <a routerLink="/usuarios" class="tarjeta-acceso-link">
+    <mat-card class="tarjeta-acceso">
+      <div class="acceso-icono acceso-azul"><mat-icon>people</mat-icon></div>
+      <h3>Usuarios</h3>
+      <p>Gestionar usuarios del sistema</p>
+    </mat-card>
+  </a>
+
+  <a routerLink="/categorias" class="tarjeta-acceso-link">
+    <mat-card class="tarjeta-acceso">
+      <div class="acceso-icono acceso-morado"><mat-icon>category</mat-icon></div>
+      <h3>Categorías</h3>
+      <p>Gestionar categorías de convocatorias</p>
+    </mat-card>
+  </a>
+  }
+
+  <a routerLink="/convocatorias" class="tarjeta-acceso-link">
+    <mat-card class="tarjeta-acceso">
+      <div class="acceso-icono acceso-verde"><mat-icon>campaign</mat-icon></div>
+      <h3>Convocatorias</h3>
+      <p>Ver y gestionar convocatorias</p>
+    </mat-card>
+  </a>
+
+  <a routerLink="/postulaciones" class="tarjeta-acceso-link">
+    <mat-card class="tarjeta-acceso">
+      <div class="acceso-icono acceso-naranja"><mat-icon>assignment</mat-icon></div>
+      <h3>Postulaciones</h3>
+      <p>Postularse o gestionar postulaciones</p>
+    </mat-card>
+  </a>
+
+  @if (authService.tieneRol('ADMINISTRADOR')) {
+  <a routerLink="/reportes" class="tarjeta-acceso-link">
+    <mat-card class="tarjeta-acceso">
+      <div class="acceso-icono acceso-rojo"><mat-icon>bar_chart</mat-icon></div>
+      <h3>Reportes</h3>
+      <p>Visualizar estadísticas del sistema</p>
+    </mat-card>
+  </a>
+  }
+
+</div>

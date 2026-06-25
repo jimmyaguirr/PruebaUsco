@@ -1,11 +1,22 @@
 <div class="login-container">
-  <mat-card class="login-card">
-    <mat-card-header>
-      <mat-card-title>Sistema de Convocatorias</mat-card-title>
-      <mat-card-subtitle>Universidad Surcolombiana</mat-card-subtitle>
-    </mat-card-header>
 
-    <mat-card-content>
+  <div class="panel-marca">
+    <div class="contenido-marca">
+      <mat-icon class="icono-escudo">school</mat-icon>
+      <h1>Sistema de Gestión de<br>Convocatorias Institucionales</h1>
+      <p>Universidad Surcolombiana</p>
+    </div>
+  </div>
+
+  <div class="panel-formulario">
+    <mat-card class="login-card">
+
+      <div class="login-header">
+        <mat-icon class="icono-login">lock_person</mat-icon>
+        <h2>Iniciar sesión</h2>
+        <p class="subtitulo-login">Ingresa con tu correo institucional</p>
+      </div>
+
       <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
         <mat-form-field appearance="outline" class="campo-completo">
@@ -40,6 +51,10 @@
         </button>
 
       </form>
-    </mat-card-content>
-  </mat-card>
+
+      <p class="pie-login">Vigilada Mineducación · Acreditación Institucional de Alta Calidad</p>
+
+    </mat-card>
+  </div>
+
 </div>
