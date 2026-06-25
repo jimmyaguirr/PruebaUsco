@@ -226,7 +226,7 @@ PUT    /api/postulaciones/{id}/estado
 GET    /api/reportes/convocatorias-categoria
 GET    /api/reportes/postulaciones-convocatoria
 GET    /api/reportes/resultado-postulaciones
-```
+
 
 - ```
 Colección de Postman disponible en la raíz del repositorio: `coleccion_postman_convocatorias.json`.
