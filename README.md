@@ -174,7 +174,9 @@ Todos los usuarios de prueba comparten la misma contraseña: **`Usco2026*`**
 | Postularse a convocatorias | ❌ | ❌ | ✅ |
 | Aprobar / rechazar postulaciones | ✅ | ✅ | ❌ |
 | Ver reportes | ✅ | ❌ | ❌ |
+## Diagrama Entidad-Relación
 
+- `docs/master - bdConvocatorias - convocatorias` — DER generado desde el esquema de la base de datos en DBeaver
 ---
 
 ## Funcionalidades principales
