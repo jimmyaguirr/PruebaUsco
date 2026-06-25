@@ -1,0 +1,128 @@
+.encabezado-reportes {
+  margin-bottom: 24px;
+}
+
+.encabezado-reportes h1 {
+  margin: 0;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.subtitulo {
+  color: #64748b;
+  margin: 4px 0 0 0;
+  font-size: 0.9rem;
+}
+
+/* === Tarjetas KPI === */
+.grid-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.kpi-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.kpi-icono {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kpi-icono mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  color: #fff;
+}
+
+.kpi-azul .kpi-icono { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+.kpi-verde .kpi-icono { background: linear-gradient(135deg, #10b981, #059669); }
+.kpi-esmeralda .kpi-icono { background: linear-gradient(135deg, #22c55e, #16a34a); }
+.kpi-rojo .kpi-icono { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+.kpi-texto {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-valor {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.1;
+}
+
+.kpi-label {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* === Tabs y contenido === */
+.tabs-reportes {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.contenido-reporte {
+  display: flex;
+  gap: 20px;
+  padding: 24px;
+  flex-wrap: wrap;
+}
+
+.tarjeta-grafico, .tarjeta-tabla {
+  flex: 1;
+  min-width: 340px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: none;
+  border: 1px solid #f1f5f9;
+}
+
+.titulo-tarjeta {
+  margin: 0 0 16px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.contenedor-canvas {
+  height: 280px;
+  position: relative;
+}
+
+.contenedor-doughnut {
+  height: 260px;
+  width: 260px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.tabla-reporte {
+  width: 100%;
+}
+
+.badge-numero {
+  display: inline-block;
+  background-color: #eef2ff;
+  color: #4f46e5;
+  font-weight: 600;
+  padding: 2px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}

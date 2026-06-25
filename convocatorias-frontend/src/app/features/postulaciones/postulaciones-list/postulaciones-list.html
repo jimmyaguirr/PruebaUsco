@@ -1,0 +1,77 @@
+<div class="encabezado">
+  <div>
+    <h1>Postulaciones</h1>
+    <p class="subtitulo">{{ postulaciones().length }} postulaciones registradas</p>
+  </div>
+</div>
+
+@if (authService.tieneRol('ESTUDIANTE')) {
+<div class="panel-postular">
+  <mat-form-field appearance="outline" class="selector-convocatoria">
+    <mat-label>Selecciona una convocatoria</mat-label>
+    <mat-select [(ngModel)]="convocatoriaSeleccionada">
+      @for (conv of convocatoriasPublicadas(); track conv.id) {
+      <mat-option [value]="conv.id">{{ conv.nombre }} ({{ conv.cuposDisponibles }} cupos)</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <button mat-flat-button color="primary" (click)="postularse()">
+    <mat-icon>send</mat-icon> Postularme
+  </button>
+</div>
+}
+
+<div class="contenedor-tabla-scroll">
+  <table mat-table [dataSource]="postulaciones()" class="tabla-postulaciones">
+
+    <ng-container matColumnDef="estudiante">
+      <th mat-header-cell *matHeaderCellDef>Estudiante</th>
+      <td mat-cell *matCellDef="let post">
+        <div class="celda-usuario">
+          <div class="avatar-usuario">{{ post.usuario.nombre.charAt(0) }}</div>
+          <span class="nombre-usuario">{{ post.usuario.nombre }}</span>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="convocatoria">
+      <th mat-header-cell *matHeaderCellDef>Convocatoria</th>
+      <td mat-cell *matCellDef="let post">{{ post.convocatoria.nombre }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaPostulacion">
+      <th mat-header-cell *matHeaderCellDef>Fecha</th>
+      <td mat-cell *matCellDef="let post" class="celda-fecha">{{ post.fechaPostulacion | date: 'dd/MM/yyyy HH:mm' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let post">
+        <span class="badge-postulacion" [ngClass]="'post-' + post.estado.toLowerCase()">
+          {{ post.estado }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef class="columna-acciones">Acciones</th>
+      <td mat-cell *matCellDef="let post" class="columna-acciones">
+        @if (post.estado === 'PENDIENTE' && (authService.tieneRol('ADMINISTRADOR') || authService.tieneRol('DOCENTE'))) {
+        <button mat-icon-button color="primary" (click)="cambiarEstado(post, 'APROBADA')" title="Aprobar">
+          <mat-icon>check_circle</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="cambiarEstado(post, 'RECHAZADA')" title="Rechazar">
+          <mat-icon>cancel</mat-icon>
+        </button>
+        }
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;" class="fila-tabla"></tr>
+  </table>
+</div>
+
+@if (postulaciones().length === 0) {
+<p class="sin-datos">No hay postulaciones registradas.</p>
+}

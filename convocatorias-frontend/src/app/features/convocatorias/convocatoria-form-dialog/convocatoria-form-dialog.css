@@ -1,0 +1,13 @@
+.campo-completo {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.fila-fechas {
+  display: flex;
+  gap: 12px;
+}
+
+.campo-mitad {
+  flex: 1;
+}

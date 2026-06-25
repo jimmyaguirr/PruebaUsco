@@ -1,0 +1,31 @@
+.tabla-convocatorias th.mat-column-nombre,
+.tabla-convocatorias td.mat-column-nombre {
+  min-width: 220px;
+}
+
+.tabla-convocatorias th.mat-column-categorias,
+.tabla-convocatorias td.mat-column-categorias {
+  min-width: 180px;
+}
+
+.tabla-convocatorias th.mat-column-fechas,
+.tabla-convocatorias td.mat-column-fechas {
+  min-width: 180px;
+  white-space: nowrap;
+}
+
+.tabla-convocatorias th.mat-column-cupos,
+.tabla-convocatorias td.mat-column-cupos {
+  min-width: 80px;
+  text-align: center;
+}
+
+.tabla-convocatorias th.mat-column-estado,
+.tabla-convocatorias td.mat-column-estado {
+  min-width: 120px;
+}
+
+.tabla-convocatorias th.mat-column-acciones,
+.tabla-convocatorias td.mat-column-acciones {
+  min-width: 140px;
+}

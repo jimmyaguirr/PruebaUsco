@@ -106,7 +106,7 @@ public class SecurityConfig {
                         // ---------------------------------------------------
                         .requestMatchers(HttpMethod.POST, "/api/postulaciones").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/postulaciones/**").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/api/postulaciones/*/estado").hasRole("ADMINISTRADOR")
+                        .requestMatchers(HttpMethod.PUT, "/api/postulaciones/*/estado").hasAnyRole("ADMINISTRADOR", "DOCENTE")
 
                         // ---------------------------------------------------
                         // Reportes: solo ADMINISTRADOR

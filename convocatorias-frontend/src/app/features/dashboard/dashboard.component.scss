@@ -1,0 +1,138 @@
+.encabezado-dashboard {
+  margin-bottom: 24px;
+}
+
+.encabezado-dashboard h1 {
+  margin: 0;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.subtitulo {
+  color: #64748b;
+  margin: 4px 0 0 0;
+  font-size: 0.9rem;
+}
+
+.grid-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.kpi-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.kpi-icono {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kpi-icono mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  color: #fff;
+}
+
+.kpi-azul .kpi-icono { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+.kpi-verde .kpi-icono { background: linear-gradient(135deg, #10b981, #059669); }
+.kpi-esmeralda .kpi-icono { background: linear-gradient(135deg, #22c55e, #16a34a); }
+.kpi-naranja .kpi-icono { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+.kpi-texto {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-valor {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.1;
+}
+
+.kpi-label {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.titulo-seccion {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 16px;
+}
+
+.grid-accesos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.tarjeta-acceso-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.tarjeta-acceso {
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.tarjeta-acceso:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta-acceso h3 {
+  margin: 12px 0 4px 0;
+  font-size: 1rem;
+  color: #1e293b;
+}
+
+.tarjeta-acceso p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.acceso-icono {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.acceso-icono mat-icon {
+  color: #fff;
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}
+
+.acceso-azul { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+.acceso-morado { background: linear-gradient(135deg, #a855f7, #9333ea); }
+.acceso-verde { background: linear-gradient(135deg, #10b981, #059669); }
+.acceso-naranja { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.acceso-rojo { background: linear-gradient(135deg, #ef4444, #dc2626); }

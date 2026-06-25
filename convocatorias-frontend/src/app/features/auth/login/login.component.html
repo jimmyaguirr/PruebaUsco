@@ -1,0 +1,60 @@
+<div class="login-container">
+
+  <div class="panel-marca">
+    <div class="contenido-marca">
+      <mat-icon class="icono-escudo">school</mat-icon>
+      <h1>Sistema de Gestión de<br>Convocatorias Institucionales</h1>
+      <p>Universidad Surcolombiana</p>
+    </div>
+  </div>
+
+  <div class="panel-formulario">
+    <mat-card class="login-card">
+
+      <div class="login-header">
+        <mat-icon class="icono-login">lock_person</mat-icon>
+        <h2>Iniciar sesión</h2>
+        <p class="subtitulo-login">Ingresa con tu correo institucional</p>
+      </div>
+
+      <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+        <mat-form-field appearance="outline" class="campo-completo">
+          <mat-label>Correo institucional</mat-label>
+          <input matInput type="email" formControlName="correo" placeholder="usuario@usco.edu.co">
+          <mat-icon matSuffix>email</mat-icon>
+          @if (formulario.get('correo')?.hasError('required') && formulario.get('correo')?.touched) {
+          <mat-error>El correo es obligatorio</mat-error>
+          }
+          @if (formulario.get('correo')?.hasError('email') && formulario.get('correo')?.touched) {
+          <mat-error>Ingresa un correo válido</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="campo-completo">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="ocultarPassword() ? 'password' : 'text'" formControlName="password">
+          <button mat-icon-button matSuffix type="button" (click)="toggleOcultarPassword()">
+            <mat-icon>{{ ocultarPassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          @if (formulario.get('password')?.hasError('required') && formulario.get('password')?.touched) {
+          <mat-error>La contraseña es obligatoria</mat-error>
+          }
+        </mat-form-field>
+
+        <button mat-flat-button color="primary" type="submit" class="boton-login" [disabled]="cargando()">
+          @if (cargando()) {
+          <mat-spinner diameter="20"></mat-spinner>
+          } @else {
+          <span>Iniciar sesión</span>
+          }
+        </button>
+
+      </form>
+
+      <p class="pie-login">Vigilada Mineducación · Acreditación Institucional de Alta Calidad</p>
+
+    </mat-card>
+  </div>
+
+</div>

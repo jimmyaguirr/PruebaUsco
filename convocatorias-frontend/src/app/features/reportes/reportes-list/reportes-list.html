@@ -1,0 +1,130 @@
+<div class="encabezado-reportes">
+  <h1>Reportes</h1>
+  <p class="subtitulo">Resumen general del sistema de convocatorias</p>
+</div>
+
+<!-- Tarjetas KPI -->
+<div class="grid-kpis">
+  <mat-card class="kpi-card kpi-azul">
+    <div class="kpi-icono"><mat-icon>campaign</mat-icon></div>
+    <div class="kpi-texto">
+      <span class="kpi-valor">{{ totalConvocatorias() }}</span>
+      <span class="kpi-label">Convocatorias</span>
+    </div>
+  </mat-card>
+
+  <mat-card class="kpi-card kpi-verde">
+    <div class="kpi-icono"><mat-icon>assignment</mat-icon></div>
+    <div class="kpi-texto">
+      <span class="kpi-valor">{{ totalPostulaciones() }}</span>
+      <span class="kpi-label">Postulaciones</span>
+    </div>
+  </mat-card>
+
+  <mat-card class="kpi-card kpi-esmeralda">
+    <div class="kpi-icono"><mat-icon>check_circle</mat-icon></div>
+    <div class="kpi-texto">
+      <span class="kpi-valor">{{ totalAprobadas() }}</span>
+      <span class="kpi-label">Aprobadas</span>
+    </div>
+  </mat-card>
+
+  <mat-card class="kpi-card kpi-rojo">
+    <div class="kpi-icono"><mat-icon>cancel</mat-icon></div>
+    <div class="kpi-texto">
+      <span class="kpi-valor">{{ totalRechazadas() }}</span>
+      <span class="kpi-label">Rechazadas</span>
+    </div>
+  </mat-card>
+</div>
+
+<mat-tab-group class="tabs-reportes" animationDuration="200ms">
+
+  <mat-tab label="Convocatorias por Categoría">
+    <div class="contenido-reporte">
+
+      <mat-card class="tarjeta-grafico">
+        <h3 class="titulo-tarjeta">Distribución por categoría</h3>
+        <div class="contenedor-canvas">
+          <canvas baseChart [data]="graficoReporte1" [options]="opcionesGraficoBarras" type="bar"></canvas>
+        </div>
+      </mat-card>
+
+      <mat-card class="tarjeta-tabla">
+        <h3 class="titulo-tarjeta">Detalle</h3>
+        <table mat-table [dataSource]="datosConvocatoriasPorCategoria()" class="tabla-reporte">
+          <ng-container matColumnDef="categoriaNombre">
+            <th mat-header-cell *matHeaderCellDef>Categoría</th>
+            <td mat-cell *matCellDef="let fila">{{ fila.categoriaNombre }}</td>
+          </ng-container>
+          <ng-container matColumnDef="totalConvocatorias">
+            <th mat-header-cell *matHeaderCellDef>Total</th>
+            <td mat-cell *matCellDef="let fila"><span class="badge-numero">{{ fila.totalConvocatorias }}</span></td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="columnasReporte1"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnasReporte1;"></tr>
+        </table>
+      </mat-card>
+
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Postulaciones por Convocatoria">
+    <div class="contenido-reporte">
+
+      <mat-card class="tarjeta-grafico">
+        <h3 class="titulo-tarjeta">Postulaciones recibidas</h3>
+        <div class="contenedor-canvas">
+          <canvas baseChart [data]="graficoReporte2" [options]="opcionesGraficoBarras" type="bar"></canvas>
+        </div>
+      </mat-card>
+
+      <mat-card class="tarjeta-tabla">
+        <h3 class="titulo-tarjeta">Detalle</h3>
+        <table mat-table [dataSource]="datosPostulacionesPorConvocatoria()" class="tabla-reporte">
+          <ng-container matColumnDef="convocatoriaNombre">
+            <th mat-header-cell *matHeaderCellDef>Convocatoria</th>
+            <td mat-cell *matCellDef="let fila">{{ fila.convocatoriaNombre }}</td>
+          </ng-container>
+          <ng-container matColumnDef="totalPostulaciones">
+            <th mat-header-cell *matHeaderCellDef>Total</th>
+            <td mat-cell *matCellDef="let fila"><span class="badge-numero">{{ fila.totalPostulaciones }}</span></td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="columnasReporte2"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnasReporte2;"></tr>
+        </table>
+      </mat-card>
+
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Resultado de Postulaciones">
+    <div class="contenido-reporte">
+
+      <mat-card class="tarjeta-grafico tarjeta-doughnut">
+        <h3 class="titulo-tarjeta">Distribución de resultados</h3>
+        <div class="contenedor-canvas contenedor-doughnut">
+          <canvas baseChart [data]="graficoReporte3" [options]="opcionesGraficoDoughnut" type="doughnut"></canvas>
+        </div>
+      </mat-card>
+
+      <mat-card class="tarjeta-tabla">
+        <h3 class="titulo-tarjeta">Detalle</h3>
+        <table mat-table [dataSource]="datosResultadoPostulaciones()" class="tabla-reporte">
+          <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let fila">{{ fila.estado }}</td>
+          </ng-container>
+          <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef>Total</th>
+            <td mat-cell *matCellDef="let fila"><span class="badge-numero">{{ fila.total }}</span></td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="columnasReporte3"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnasReporte3;"></tr>
+        </table>
+      </mat-card>
+
+    </div>
+  </mat-tab>
+
+</mat-tab-group>

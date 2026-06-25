@@ -4,10 +4,12 @@ package com.usco.convocatorias.controller;
 import com.usco.convocatorias.model.Usuario;
 import com.usco.convocatorias.model.dto.UsuarioRequestDTO;
 import com.usco.convocatorias.service.interfaces.UsuarioService;
+import io.jsonwebtoken.security.Password;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.UUID;
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping
     public ResponseEntity<List<Usuario>> listar() {
@@ -36,10 +39,7 @@ public class UsuarioController {
                 .identificacion(dto.identificacion())
                 .nombre(dto.nombre())
                 .correo(dto.correo())
-                // NOTA: sin Spring Security/BCrypt aún, se guarda temporalmente
-                // en texto plano. Reemplazar por passwordEncoder.encode(dto.password())
-                // cuando se integre seguridad.
-                .passwordHash(dto.password())
+                .passwordHash(passwordEncoder.encode(dto.password()))
                 .rol(dto.rol())
                 .estado(dto.estado())
                 .build();
@@ -55,7 +55,7 @@ public class UsuarioController {
                 .identificacion(dto.identificacion())
                 .nombre(dto.nombre())
                 .correo(dto.correo())
-                .passwordHash(dto.password())
+                .passwordHash(passwordEncoder.encode(dto.password()))
                 .rol(dto.rol())
                 .estado(dto.estado())
                 .build();

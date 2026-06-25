@@ -1,0 +1,145 @@
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.encabezado h1 {
+  margin: 0;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.subtitulo {
+  margin: 4px 0 0 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.contenedor-tabla-scroll {
+  overflow-x: auto;
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.tabla-usuarios {
+  width: 100%;
+  min-width: 900px;
+}
+
+.tabla-usuarios th {
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.fila-tabla:hover {
+  background-color: #f8fafc;
+}
+
+/* === Celda usuario con avatar === */
+.celda-usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar-usuario {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.nombre-usuario {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.celda-correo {
+  color: #64748b;
+}
+
+/* === Badge de rol === */
+.badge-rol {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.rol-administrador {
+  background-color: #ede9fe;
+  color: #6d28d9;
+}
+
+.rol-docente {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.rol-estudiante {
+  background-color: #d1fae5;
+  color: #047857;
+}
+
+/* === Badge de estado === */
+.badge-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.punto-estado {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.estado-activo {
+  background-color: #d1fae5;
+  color: #047857;
+}
+
+.estado-activo .punto-estado {
+  background-color: #10b981;
+}
+
+.estado-inactivo {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.estado-inactivo .punto-estado {
+  background-color: #ef4444;
+}
+
+.columna-acciones {
+  text-align: right;
+}
+
+.sin-datos {
+  text-align: center;
+  color: #64748b;
+  padding: 40px;
+  background: #fff;
+  border-radius: 12px;
+}

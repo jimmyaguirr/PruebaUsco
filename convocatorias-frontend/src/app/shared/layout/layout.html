@@ -1,0 +1,89 @@
+<div class="contenedor-principal">
+
+  <div class="sidebar" [class.sidebar-colapsado]="sidebarColapsado()">
+
+    <div class="sidebar-header">
+      @if (!sidebarColapsado()) {
+      <span class="sidebar-titulo">USCO Convocatorias</span>
+      } @else {
+      <mat-icon class="sidebar-logo-icono">school</mat-icon>
+      }
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <mat-nav-list class="sidebar-nav">
+
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="enlace-activo"
+         [matTooltip]="sidebarColapsado() ? 'Dashboard' : ''" matTooltipPosition="right">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        @if (!sidebarColapsado()) { <span matListItemTitle>Dashboard</span> }
+      </a>
+
+      @if (esAdmin()) {
+      <a mat-list-item routerLink="/usuarios" routerLinkActive="enlace-activo"
+         [matTooltip]="sidebarColapsado() ? 'Usuarios' : ''" matTooltipPosition="right">
+        <mat-icon matListItemIcon>people</mat-icon>
+        @if (!sidebarColapsado()) { <span matListItemTitle>Usuarios</span> }
+      </a>
+
+      <a mat-list-item routerLink="/categorias" routerLinkActive="enlace-activo"
+         [matTooltip]="sidebarColapsado() ? 'Categorías' : ''" matTooltipPosition="right">
+        <mat-icon matListItemIcon>category</mat-icon>
+        @if (!sidebarColapsado()) { <span matListItemTitle>Categorías</span> }
+      </a>
+      }
+
+      <a mat-list-item routerLink="/convocatorias" routerLinkActive="enlace-activo"
+         [matTooltip]="sidebarColapsado() ? 'Convocatorias' : ''" matTooltipPosition="right">
+        <mat-icon matListItemIcon>campaign</mat-icon>
+        @if (!sidebarColapsado()) { <span matListItemTitle>Convocatorias</span> }
+      </a>
+
+      <a mat-list-item routerLink="/postulaciones" routerLinkActive="enlace-activo"
+         [matTooltip]="sidebarColapsado() ? 'Postulaciones' : ''" matTooltipPosition="right">
+        <mat-icon matListItemIcon>assignment</mat-icon>
+        @if (!sidebarColapsado()) { <span matListItemTitle>Postulaciones</span> }
+      </a>
+
+      @if (esAdmin()) {
+      <a mat-list-item routerLink="/reportes" routerLinkActive="enlace-activo"
+         [matTooltip]="sidebarColapsado() ? 'Reportes' : ''" matTooltipPosition="right">
+        <mat-icon matListItemIcon>bar_chart</mat-icon>
+        @if (!sidebarColapsado()) { <span matListItemTitle>Reportes</span> }
+      </a>
+      }
+
+    </mat-nav-list>
+
+  </div>
+
+  <div class="contenido-principal">
+
+    <mat-toolbar class="toolbar-superior">
+      <button mat-icon-button (click)="toggleSidebar()" title="Colapsar menú">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <span class="espaciador"></span>
+
+      <div class="usuario-chip">
+        <mat-icon class="icono-usuario">account_circle</mat-icon>
+        <div class="usuario-datos">
+          <span class="usuario-nombre">{{ authService.usuarioActual()?.nombre }}</span>
+          <span class="usuario-rol">{{ authService.usuarioActual()?.rol }}</span>
+        </div>
+      </div>
+
+      <button mat-icon-button (click)="cerrarSesion()" title="Cerrar sesión">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="area-contenido">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+</div>

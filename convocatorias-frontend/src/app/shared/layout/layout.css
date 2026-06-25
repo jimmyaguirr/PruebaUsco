@@ -1,0 +1,119 @@
+.contenedor-principal {
+  height: 100vh;
+  display: flex;
+}
+
+/* === Sidebar === */
+.sidebar {
+  width: 240px;
+  background-color: #e6c5c5;
+  border-right: 1px solid #e2e8f0;
+  transition: width 0.2s ease;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.sidebar-colapsado {
+  width: 72px;
+}
+
+.sidebar-header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.sidebar-titulo {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f10837;
+  white-space: nowrap;
+}
+
+.sidebar-logo-icono {
+  color: #f10837;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.sidebar-nav {
+  padding-top: 8px;
+}
+
+.sidebar-nav a {
+  border-radius: 8px;
+  margin: 4px 8px;
+  color: #f10837;
+}
+
+.sidebar-nav a mat-icon {
+  color: #f10837;
+}
+
+.enlace-activo {
+  background-color: #eef2ff !important;
+  color: #f10837 !important;
+}
+
+.enlace-activo mat-icon {
+  color: #f10837 !important;
+}
+
+/* === Toolbar superior === */
+.contenido-principal {
+  background-color: #f8fafc;
+  width: 100%;
+  flex: 1 1 auto;
+}
+
+.toolbar-superior {
+  background-color: #f10837;
+  border-bottom: 1px solid #e2e8f0;
+  height: 64px;
+}
+
+.espaciador {
+  flex: 1 1 auto;
+}
+
+.usuario-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 8px;
+}
+
+.icono-usuario {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  color: #ffffff;
+}
+
+.usuario-datos {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.usuario-nombre {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.usuario-rol {
+  font-size: 0.75rem;
+  color: #ffffff;
+}
+
+/* === Área de contenido === */
+.area-contenido {
+  padding: 24px;
+  min-height: calc(100vh - 64px);
+  width: 100%;
+  box-sizing: border-box;
+}
