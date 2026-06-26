@@ -1,6 +1,7 @@
 package com.usco.convocatorias.service.interfaces;
 
 import com.usco.convocatorias.model.Categoria;
+import com.usco.convocatorias.model.dto.CategoriaRequestDTO;
 
 import java.util.List;
 import java.util.UUID;
@@ -11,9 +12,9 @@ public interface CategoriaService {
 
     Categoria buscarPorId(UUID id);
 
-    Categoria crear(Categoria categoria);
+    Categoria crear(CategoriaRequestDTO categoria);
 
-    Categoria actualizar(UUID id, Categoria datosActualizados);
+    Categoria actualizar(UUID id, CategoriaRequestDTO datosActualizados);
 
     void eliminar(UUID id);
 }

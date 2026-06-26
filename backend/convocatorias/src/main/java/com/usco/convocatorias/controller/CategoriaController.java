@@ -32,22 +32,16 @@ public class CategoriaController {
 
     @PostMapping
     public ResponseEntity<Categoria> crear(@Valid @RequestBody CategoriaRequestDTO dto) {
-        Categoria categoria = Categoria.builder()
-                .nombre(dto.nombre())
-                .descripcion(dto.descripcion())
-                .build();
-        Categoria creada = categoriaService.crear(categoria);
+
+        Categoria creada = categoriaService.crear(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(creada);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Categoria> actualizar(@PathVariable UUID id,
                                                 @Valid @RequestBody CategoriaRequestDTO dto) {
-        Categoria datosActualizados = Categoria.builder()
-                .nombre(dto.nombre())
-                .descripcion(dto.descripcion())
-                .build();
-        return ResponseEntity.ok(categoriaService.actualizar(id, datosActualizados));
+
+        return ResponseEntity.ok(categoriaService.actualizar(id, dto));
     }
 
     @DeleteMapping("/{id}")

@@ -5,7 +5,7 @@ import com.usco.convocatorias.model.Postulacion;
 import com.usco.convocatorias.model.dto.CambioEstadoPostulacionDTO;
 import com.usco.convocatorias.model.dto.PostulacionRequestDTO;
 import com.usco.convocatorias.model.dto.PostulacionesPorConvocatoriaDTO;
-import com.usco.convocatorias.model.dto.ResultadoPostulacionesDTO;
+
 import com.usco.convocatorias.service.interfaces.PostulacionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -58,6 +58,4 @@ public class PostulacionController {
     public ResponseEntity<List<PostulacionesPorConvocatoriaDTO>> reportePostulacionesPorConvocatoria() {
         return ResponseEntity.ok(postulacionService.reportePostulacionesPorConvocatoria());
     }
-
-
 }

@@ -7,6 +7,7 @@ import com.usco.convocatorias.excepcion.RecursoNoEncontradoException;
 import com.usco.convocatorias.model.Categoria;
 import com.usco.convocatorias.model.Convocatoria;
 import com.usco.convocatorias.model.dto.ConvocatoriaPorCategoriaDTO;
+import com.usco.convocatorias.model.dto.ConvocatoriaRequestDTO;
 import com.usco.convocatorias.model.enums.EstadoConvocatoria;
 import com.usco.convocatorias.respository.CategoriaRepository;
 import com.usco.convocatorias.respository.ConvocatoriaRepository;
@@ -43,14 +44,32 @@ public class ConvocatoriaServiceImpl implements ConvocatoriaService {
     }
 
     @Override
-    public Convocatoria crear(Convocatoria convocatoria, Set<UUID> idsCategorias) {
+    public Convocatoria crear(ConvocatoriaRequestDTO dto, Set<UUID> idsCategorias) {
+        Convocatoria convocatoria = Convocatoria.builder()
+                .nombre(dto.nombre())
+                .descripcion(dto.descripcion())
+                .fechaInicio(dto.fechaInicio())
+                .fechaFin(dto.fechaFin())
+                .cuposDisponibles(dto.cuposDisponibles())
+                .estado(dto.estado())
+                .build();
+
         validarFechas(convocatoria);
         asociarCategorias(convocatoria, idsCategorias);
         return convocatoriaRepository.save(convocatoria);
     }
 
     @Override
-    public Convocatoria actualizar(UUID id, Convocatoria datosActualizados, Set<UUID> idsCategorias) {
+    public Convocatoria actualizar(UUID id, ConvocatoriaRequestDTO dto, Set<UUID> idsCategorias) {
+        Convocatoria datosActualizados = Convocatoria.builder()
+                .nombre(dto.nombre())
+                .descripcion(dto.descripcion())
+                .fechaInicio(dto.fechaInicio())
+                .fechaFin(dto.fechaFin())
+                .cuposDisponibles(dto.cuposDisponibles())
+                .estado(dto.estado())
+                .build();
+
         Convocatoria existente = buscarPorId(id);
         validarFechas(datosActualizados);
 

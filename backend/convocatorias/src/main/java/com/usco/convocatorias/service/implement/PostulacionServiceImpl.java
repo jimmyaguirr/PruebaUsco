@@ -112,6 +112,13 @@ public class PostulacionServiceImpl implements PostulacionService {
         if (nuevoEstado == EstadoPostulacion.APROBADA) {
             long aprobadas = postulacionRepository.countByConvocatoriaIdAndEstado(
                     postulacion.getConvocatoria().getId(), EstadoPostulacion.APROBADA);
+
+            Convocatoria convocatoria = convocatoriaRepository.findById(postulacion.getConvocatoria().getId())
+                    .orElseThrow(() -> new RecursoNoEncontradoException(
+                            "No se encontró la convocatoria con id " + postulacion.getConvocatoria().getId()));
+
+            convocatoria.setCuposDisponibles(convocatoria.getCuposDisponibles() - 1);
+
             if (aprobadas >= postulacion.getConvocatoria().getCuposDisponibles()) {
                 throw new ReglaNegocioException(
                         "No es posible aprobar: se han agotado los cupos disponibles");
