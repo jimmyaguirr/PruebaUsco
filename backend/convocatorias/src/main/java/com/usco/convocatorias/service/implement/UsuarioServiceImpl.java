@@ -5,11 +5,13 @@ import com.usco.convocatorias.excepcion.ReglaNegocioException;
 import com.usco.convocatorias.excepcion.RecursoNoEncontradoException;
 
 import com.usco.convocatorias.model.Usuario;
+import com.usco.convocatorias.model.dto.UsuarioRequestDTO;
 import com.usco.convocatorias.respository.UsuarioRepository;
 import com.usco.convocatorias.service.interfaces.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,7 +22,7 @@ import java.util.UUID;
 public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
-
+    private final PasswordEncoder passwordEncoder;
     @Override
     @Transactional(readOnly = true)
     public List<Usuario> listarTodos() {
@@ -36,7 +38,15 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario crear(Usuario usuario) {
+    public Usuario crear(UsuarioRequestDTO dto) {
+        Usuario usuario = Usuario.builder()
+                .identificacion(dto.identificacion())
+                .nombre(dto.nombre())
+                .correo(dto.correo())
+                .passwordHash(passwordEncoder.encode(dto.password()))
+                .rol(dto.rol())
+                .estado(dto.estado())
+                .build();
         validarDuplicados(usuario.getCorreo(), usuario.getIdentificacion(), null);
         // El hash de la contraseña se asume calculado antes de llegar aquí
         // (se resolverá cuando se integre Spring Security/BCrypt).
@@ -44,7 +54,16 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario actualizar(UUID id, Usuario datosActualizados) {
+    public Usuario actualizar(UUID id, UsuarioRequestDTO dto) {
+
+        Usuario datosActualizados = Usuario.builder()
+                .identificacion(dto.identificacion())
+                .nombre(dto.nombre())
+                .correo(dto.correo())
+                .passwordHash(passwordEncoder.encode(dto.password()))
+                .rol(dto.rol())
+                .estado(dto.estado())
+                .build();
         Usuario existente = buscarPorId(id);
         validarDuplicados(datosActualizados.getCorreo(), datosActualizados.getIdentificacion(), id);
 

@@ -4,6 +4,7 @@ import com.usco.convocatorias.excepcion.ReglaNegocioException;
 import com.usco.convocatorias.excepcion.RecursoNoEncontradoException;
 
 import com.usco.convocatorias.model.Categoria;
+import com.usco.convocatorias.model.dto.CategoriaRequestDTO;
 import com.usco.convocatorias.respository.CategoriaRepository;
 import com.usco.convocatorias.service.interfaces.CategoriaService;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +36,11 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public Categoria crear(Categoria categoria) {
+    public Categoria crear(CategoriaRequestDTO dto) {
+        Categoria categoria = Categoria.builder()
+                .nombre(dto.nombre())
+                .descripcion(dto.descripcion())
+                .build();
         if (categoriaRepository.existsByNombre(categoria.getNombre())) {
             throw new ReglaNegocioException("Ya existe una categoría con el nombre: " + categoria.getNombre());
         }
@@ -43,7 +48,11 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public Categoria actualizar(UUID id, Categoria datosActualizados) {
+    public Categoria actualizar(UUID id, CategoriaRequestDTO dto) {
+        Categoria datosActualizados = Categoria.builder()
+                .nombre(dto.nombre())
+                .descripcion(dto.descripcion())
+                .build();
         Categoria existente = buscarPorId(id);
 
         categoriaRepository.findByNombre(datosActualizados.getNombre()).ifPresent(c -> {

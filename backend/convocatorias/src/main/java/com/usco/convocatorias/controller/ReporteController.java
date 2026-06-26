@@ -27,25 +27,23 @@ public class ReporteController {
     private final ConvocatoriaService convocatoriaService;
     private final PostulacionService postulacionService;
 
-    /**
-     * Reporte 1: Convocatorias por categoría.
-     */
+
+     /// Reporte 1: Convocatorias por categoría.
+
     @GetMapping("/convocatorias-categoria")
     public ResponseEntity<List<ConvocatoriaPorCategoriaDTO>> convocatoriasPorCategoria() {
         return ResponseEntity.ok(convocatoriaService.reporteConvocatoriasPorCategoria());
     }
 
-    /**
-     * Reporte 2: Cantidad de postulaciones por convocatoria.
-     */
+    /// Reporte 2: Cantidad de postulaciones por convocatoria.
+
     @GetMapping("/postulaciones-convocatoria")
     public ResponseEntity<List<PostulacionesPorConvocatoriaDTO>> postulacionesPorConvocatoria() {
         return ResponseEntity.ok(postulacionService.reportePostulacionesPorConvocatoria());
     }
 
-    /**
-     * Reporte 3: Postulaciones aprobadas y rechazadas.
-     */
+    /// Reporte 3: Postulaciones aprobadas y rechazadas.
+
     @GetMapping("/resultado-postulaciones")
     public ResponseEntity<List<ResultadoPostulacionesDTO>> resultadoPostulaciones() {
         return ResponseEntity.ok(postulacionService.reporteResultadoPostulaciones());

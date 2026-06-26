@@ -3,6 +3,7 @@ package com.usco.convocatorias.service.interfaces;
 
 import com.usco.convocatorias.model.Convocatoria;
 import com.usco.convocatorias.model.dto.ConvocatoriaPorCategoriaDTO;
+import com.usco.convocatorias.model.dto.ConvocatoriaRequestDTO;
 import com.usco.convocatorias.model.enums.EstadoConvocatoria;
 
 import java.util.List;
@@ -15,9 +16,9 @@ public interface ConvocatoriaService {
 
     Convocatoria buscarPorId(UUID id);
 
-    Convocatoria crear(Convocatoria convocatoria, Set<UUID> idsCategorias);
+    Convocatoria crear(ConvocatoriaRequestDTO convocatoria, Set<UUID> idsCategorias);
 
-    Convocatoria actualizar(UUID id, Convocatoria datosActualizados, Set<UUID> idsCategorias);
+    Convocatoria actualizar(UUID id, ConvocatoriaRequestDTO datosActualizados, Set<UUID> idsCategorias);
 
     void eliminar(UUID id);
 

@@ -34,32 +34,13 @@ public class ConvocatoriaController {
 
     @PostMapping
     public ResponseEntity<Convocatoria> crear(@Valid @RequestBody ConvocatoriaRequestDTO dto) {
-        Convocatoria convocatoria = Convocatoria.builder()
-                .nombre(dto.nombre())
-                .descripcion(dto.descripcion())
-                .fechaInicio(dto.fechaInicio())
-                .fechaFin(dto.fechaFin())
-                .cuposDisponibles(dto.cuposDisponibles())
-                .estado(dto.estado())
-                .build();
-
-        Convocatoria creada = convocatoriaService.crear(convocatoria, dto.idsCategorias());
+        Convocatoria creada = convocatoriaService.crear(dto, dto.idsCategorias());
         return ResponseEntity.status(HttpStatus.CREATED).body(creada);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Convocatoria> actualizar(@PathVariable UUID id,
-                                                   @Valid @RequestBody ConvocatoriaRequestDTO dto) {
-        Convocatoria datosActualizados = Convocatoria.builder()
-                .nombre(dto.nombre())
-                .descripcion(dto.descripcion())
-                .fechaInicio(dto.fechaInicio())
-                .fechaFin(dto.fechaFin())
-                .cuposDisponibles(dto.cuposDisponibles())
-                .estado(dto.estado())
-                .build();
-
-        Convocatoria actualizada = convocatoriaService.actualizar(id, datosActualizados, dto.idsCategorias());
+    public ResponseEntity<Convocatoria> actualizar(@PathVariable UUID id, @Valid @RequestBody ConvocatoriaRequestDTO dto) {
+        Convocatoria actualizada = convocatoriaService.actualizar(id, dto, dto.idsCategorias());
         return ResponseEntity.ok(actualizada);
     }
 
@@ -70,10 +51,7 @@ public class ConvocatoriaController {
     }
 
     @PatchMapping("/{id}/estado")
-    public ResponseEntity<Convocatoria> cambiarEstado(@PathVariable UUID id,
-                                                      @Valid @RequestBody CambioEstadoConvocatoriaDTO dto) {
+    public ResponseEntity<Convocatoria> cambiarEstado(@PathVariable UUID id, @Valid @RequestBody CambioEstadoConvocatoriaDTO dto) {
         return ResponseEntity.ok(convocatoriaService.cambiarEstado(id, dto.estado()));
     }
-
-
 }

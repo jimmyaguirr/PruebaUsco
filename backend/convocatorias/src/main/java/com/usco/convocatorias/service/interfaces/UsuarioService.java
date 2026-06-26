@@ -1,6 +1,7 @@
 package com.usco.convocatorias.service.interfaces;
 
 import com.usco.convocatorias.model.Usuario;
+import com.usco.convocatorias.model.dto.UsuarioRequestDTO;
 
 import java.util.List;
 import java.util.UUID;
@@ -11,9 +12,9 @@ public interface UsuarioService {
 
     Usuario buscarPorId(UUID id);
 
-    Usuario crear(Usuario usuario);
+    Usuario crear(UsuarioRequestDTO usuario);
 
-    Usuario actualizar(UUID id, Usuario datosActualizados);
+    Usuario actualizar(UUID id, UsuarioRequestDTO datosActualizados);
 
     void eliminar(UUID id);
 }
